@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">MDAnalysis</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">MD Analysis</string>
+    <string name="nav_header_subtitle">srvmodak656@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">MD Analysis</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="ip">10.0.0.47</string>
+    <string name="port">8081</string>
+    <string name="domain_name">product-catalog-module</string>
+    <string name="catalog_name">product</string>
+    <string name="get_all_products">get-all-products</string>
+    <string name="url_get_all_products">http://10.0.0.47:8081/product-catalog-module/product/</string>
+    <string name="product_card_title">description</string>
+    <string name="tab_text_1">Analysis</string>
+    <string name="tab_text_2">code</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">MainActivity2</string>
+
+
+</resources>
