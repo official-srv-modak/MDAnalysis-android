@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.0.47:8081/product-catalog-module/product/") // replace with your API's base URL
+                .baseUrl(getBaseContext().getString(R.string.url_get_all_products)) // replace with your API's base URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
