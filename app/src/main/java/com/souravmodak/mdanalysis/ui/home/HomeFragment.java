@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.souravmodak.mdanalysis.R;
 import com.souravmodak.mdanalysis.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -22,11 +24,14 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+//        final TextView textView = binding.textHome;
+//        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        LinearLayout homeLinearLayout = getView().findViewById(R.id.home_linear_layout);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.product_card, homeLinearLayout);
+
+        return binding.getRoot();
     }
 
     @Override

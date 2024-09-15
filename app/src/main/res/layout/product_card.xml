@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background_grey"
     android:orientation="vertical">
 
     <ImageView
@@ -22,18 +21,17 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="10dp"
         app:cardCornerRadius="10dp"
-        android:elevation="10dp"
-        android:background="@color/card_grey">
+        android:elevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/card_grey"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/black"
                 android:orientation="horizontal">
 
                 <TextView
@@ -42,8 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Product Name:"
+                    android:text="Product Name"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -60,75 +57,28 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/colorFilterWavelengthMinTitle"
+                        android:id="@+id/product_card_accuracy_title"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:layout_weight="0.5"
                         android:gravity="center"
-                        android:text="Set min wavelength : "
-                        android:textColor="@color/white"
+                        android:text="@string/accuracy_title"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
-                    <SeekBar
-                        android:id="@+id/colorFilterSeekbarMin"
+                    <TextView
+                        android:id="@+id/product_card_accuracy_value"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right|bottom"
+                        android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:layout_weight="0.5"
-                        android:max="750"
-                        android:min="400"/>
-                </LinearLayout>
-
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center|top">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
                         android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/colorFilterMinEt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:digits="1234567890"
-                            android:inputType="textPersonName"
-                            android:maxLines="100"
-                            android:scrollHorizontally="false"
-                            android:text=""
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/colorFilterUnitMin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="nm"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </HorizontalScrollView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -136,71 +86,115 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/colorFilterWavelengthMaxTitle"
+                        android:id="@+id/product_card_description_title"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:layout_weight="0.5"
                         android:gravity="center"
-                        android:text="Set max wavelength : "
-                        android:textColor="@color/white"
+                        android:text="@string/card_description_title"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
-                    <SeekBar
-                        android:id="@+id/colorFilterSeekbarMax"
+                    <TextView
+                        android:id="@+id/product_card_description_value"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="right|bottom"
                         android:layout_margin="10dp"
                         android:layout_weight="0.5"
-                        android:max="750"
-                        android:min="400"/>
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
-
-                <HorizontalScrollView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center|top">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/product_card_train_model_file_title"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.5"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:text="@string/card_train_model_file"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-                        <EditText
-                            android:id="@+id/colorFilterMaxEt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="left"
-                            android:digits="1234567890"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:inputType="textPersonName"
-                            android:maxLines="100"
-                            android:scrollHorizontally="false"
-                            android:text=""
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/product_card_train_model_file_value"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/colorFilterUnitMax"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="nm"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/product_card_type_title"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/card_model_type"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-                    </LinearLayout>
-                </HorizontalScrollView>
+                    <TextView
+                        android:id="@+id/product_card_type_value"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:id="@+id/product_card_test_model_file_title"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/card_test_model_file"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/product_card_test_model_file_value"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
