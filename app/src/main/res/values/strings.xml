@@ -15,13 +15,19 @@
     <string name="domain_name">product-catalog-module</string>
     <string name="catalog_name">product</string>
     <string name="get_all_products">get-all-products</string>
-    <string name="url_get_all_products">http://10.0.0.47:8081/product-catalog-module/product/</string>
+    <string name="url_product">http://10.0.0.47:8081/product-catalog-module/product/</string>
     <string name="product_card_title">description</string>
     <string name="tab_text_1">Analysis</string>
     <string name="tab_text_2">code</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main2">MainActivity2</string>
+    <string name="accuracy_title">Accuracy</string>
+    <string name="card_description_title">Description</string>
+    <string name="card_train_model_file">Train model</string>
+    <string name="card_test_model_file">Test File</string>
+    <string name="card_model_type">Model Type</string>
+    <string name="product_list_title">Products List</string>
 
 
 </resources>
