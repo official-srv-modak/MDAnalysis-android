@@ -24,14 +24,19 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View root = binding.getRoot(); // This is the root view that will be returned
 
-//        final TextView textView = binding.textHome;
-//        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        // Access the LinearLayout using binding instead of getView()
+        LinearLayout homeLinearLayout = binding.homeLinearLayout;
 
-        LinearLayout homeLinearLayout = getView().findViewById(R.id.home_linear_layout);
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.product_card, homeLinearLayout);
+        // Inflate a product card and add it to the LinearLayout
+        View productListCard = LayoutInflater.from(getContext()).inflate(R.layout.product_list_home, homeLinearLayout,  false);
+        LinearLayout productListLinearLayout = productListCard.findViewById(R.id.product_list_linear_layout);
+        View productCard = LayoutInflater.from(getContext()).inflate(R.layout.product_card, productListLinearLayout,  false);
+        productListLinearLayout.addView(productCard);
+        homeLinearLayout.addView(productListCard);
 
-        return binding.getRoot();
+        return root;
     }
 
     @Override

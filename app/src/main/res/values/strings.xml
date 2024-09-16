@@ -27,6 +27,7 @@
     <string name="card_train_model_file">Train model</string>
     <string name="card_test_model_file">Test File</string>
     <string name="card_model_type">Model Type</string>
+    <string name="product_list_title">Products List</string>
 
 
 </resources>
