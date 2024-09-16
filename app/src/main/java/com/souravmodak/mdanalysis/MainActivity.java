@@ -65,16 +65,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
-
-        // Set up Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getBaseContext().getString(R.string.url_get_all_products)) // replace with your API's base URL
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        apiService = retrofit.create(ApiService.class);
         fetchMenuTitle();
+
+        //fetchProducts();
     }
 
     @Override
@@ -93,7 +86,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchMenuTitle() {
-        Call<JsonObject> call = apiService.getDynamicTitle();
+
+        // Set up Retrofit
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getBaseContext().getString(R.string.url_product)) // replace with your API's base URL
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        apiService = retrofit.create(ApiService.class);
+
+        Call<JsonObject> call = apiService.getAllProducts();
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    Toast.makeText(MainActivity.this, "Failed to get dynamic title", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Failed to get response", Toast.LENGTH_SHORT).show();
                 }
             }
 

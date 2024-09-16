@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/wrongflag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="end"
-        android:visibility="gone"
-        app:srcCompat="@android:drawable/ic_delete" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -35,7 +25,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/productTitile"
+                    android:id="@+id/product_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -74,7 +64,6 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:layout_weight="0.5"
-                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -103,7 +92,6 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:layout_weight="0.5"
-                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -132,7 +120,35 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:layout_weight="0.5"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/product_card_test_model_file_title"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.5"
                         android:gravity="center"
+                        android:text="@string/card_test_model_file"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/product_card_test_model_file_value"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.5"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -161,36 +177,6 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:layout_weight="0.5"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/product_card_test_model_file_title"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:layout_weight="0.5"
-                        android:gravity="center"
-                        android:text="@string/card_test_model_file"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/product_card_test_model_file_value"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:layout_weight="0.5"
-                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
