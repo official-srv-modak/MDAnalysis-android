@@ -1,6 +1,10 @@
 package com.souravmodak.mdanalysis;
 
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
@@ -8,6 +12,8 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -27,6 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.souravmodak.mdanalysis.databinding.ActivityMainBinding;
 import com.souravmodak.mdanalysis.misc.ApiService;
+import com.souravmodak.mdanalysis.ui.gallery.GalleryFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,22 +48,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Initialize view binding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Set up toolbar
         setSupportActionBar(binding.appBarMain.toolbar);
+
+        // Set up button click listener to initialize the fragment
         binding.appBarMain.addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .setAnchorView(R.id.addProduct).show();
+
             }
         });
+
+        // Set up drawer and navigation
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setOpenableLayout(drawer)
@@ -65,16 +75,36 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        fetchMenuTitle();
-        // cards are loaded in the fragment HomeFragment
+        // Fetch menu title
+//        fetchMenuTitle();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        settingsMenu = menu;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+
+        // Access the MenuItem after inflating the menu
+        MenuItem item = menu.findItem(R.id.action_settings);
+        item.setTitle("Logout");
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
+                // Perform logout operations here
+                handleLogout();
+                return true; // Return true to indicate that the click event was handled
+            }
+        });
+
         return true;
+    }
+
+    private void handleLogout() {
+        // Implement your logout logic here
+        // For example, clearing user session, redirecting to login activity, etc.
+
+        // Example: Redirect to LoginActivity
+        finish(); // Optionally finish the current activity
     }
 
     @Override
@@ -82,49 +112,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    private void fetchMenuTitle() {
-
-        // Set up Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getBaseContext().getString(R.string.url_product)) // replace with your API's base URL
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        apiService = retrofit.create(ApiService.class);
-
-        Call<JsonObject> call = apiService.getAllProducts();
-        call.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if (response.isSuccessful()) {
-                    // Assuming your response has a title field and a products array
-                    JsonObject responseObject = response.body();
-                    JsonArray products = responseObject.getAsJsonArray("products");
-
-                    // Clear previous menu items if needed
-                    if (settingsMenu != null) {
-                        settingsMenu.clear(); // Clear existing menu items
-
-                        // Add new menu items based on the JSON data
-                        for (int i = 0; i < products.size(); i++) {
-                            JsonObject product = products.get(i).getAsJsonObject();
-                            String title = product.get(getBaseContext().getString(R.string.product_card_title)).getAsString(); // Adjust according to your JSON structure
-
-                            // Add new menu item
-                            settingsMenu.add(Menu.NONE, i, Menu.NONE, title);
-                        }
-                    }
-                } else {
-                    Toast.makeText(MainActivity.this, "Failed to get response", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }
