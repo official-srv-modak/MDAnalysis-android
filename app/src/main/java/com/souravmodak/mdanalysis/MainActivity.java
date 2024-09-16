@@ -1,19 +1,14 @@
 package com.souravmodak.mdanalysis;
 
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
-import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -21,19 +16,9 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.souravmodak.mdanalysis.databinding.ActivityMainBinding;
 import com.souravmodak.mdanalysis.misc.ApiService;
-import com.souravmodak.mdanalysis.ui.gallery.GalleryFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,28 +40,44 @@ public class MainActivity extends AppCompatActivity {
         // Set up toolbar
         setSupportActionBar(binding.appBarMain.toolbar);
 
-        // Set up button click listener to initialize the fragment
-        binding.appBarMain.addProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        // Set up FloatingActionButton click listener to navigate to GalleryFragment
+        binding.appBarMain.addProduct.setOnClickListener(view -> openGalleryFragment());
 
         // Set up drawer and navigation
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
+        // Configure navigation with drawer
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setOpenableLayout(drawer)
                 .build();
+
+        // Setup NavController and NavigationUI
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        // Fetch menu title
-//        fetchMenuTitle();
+        // Handle navigation drawer item clicks
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_gallery) {
+                openGalleryFragment();
+            } else if (id == R.id.nav_home) {
+                // Navigate to Home Fragment
+                navController.navigate(R.id.nav_home);
+            } else if (id == R.id.nav_slideshow) {
+                // Navigate to Slideshow Fragment
+                navController.navigate(R.id.nav_slideshow);
+            }
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        });
+    }
+
+    private void openGalleryFragment() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        navController.navigate(R.id.nav_gallery);
     }
 
     @Override
@@ -113,4 +114,7 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+
 }

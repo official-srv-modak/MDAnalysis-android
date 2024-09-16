@@ -1,4 +1,4 @@
-package com.souravmodak.mdanalysis.ui.gallery;
+package com.souravmodak.mdanalysis.ui.product;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,14 +12,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.souravmodak.mdanalysis.databinding.FragmentGalleryBinding;
 
-public class GalleryFragment extends Fragment {
+public class NewProductFragment extends Fragment {
 
     private FragmentGalleryBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        NewProductViewModel galleryViewModel =
+                new ViewModelProvider(this).get(NewProductViewModel.class);
 
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

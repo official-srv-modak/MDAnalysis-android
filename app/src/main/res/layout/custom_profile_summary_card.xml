@@ -131,6 +131,7 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:layout_weight="0.5"
+                        android:paddingRight="10dp"
                         android:justificationMode="inter_word"
                         android:lineSpacingExtra="2dp"
                         android:text="@string/summary_card_fake_project_desc"

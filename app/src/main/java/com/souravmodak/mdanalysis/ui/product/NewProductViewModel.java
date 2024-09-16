@@ -1,14 +1,14 @@
-package com.souravmodak.mdanalysis.ui.gallery;
+package com.souravmodak.mdanalysis.ui.product;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class NewProductViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public NewProductViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is gallery fragment");
     }

@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
+
         View root = binding.getRoot(); // This is the root view that will be returned
 
         // Access the LinearLayout using binding instead of getView()

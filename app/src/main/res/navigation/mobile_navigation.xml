@@ -9,13 +9,18 @@
         android:id="@+id/nav_home"
         android:name="com.souravmodak.mdanalysis.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+    <action
+        android:id="@+id/action_mainFragment_to_galleryFragment"
+        app:destination="@id/nav_gallery" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.souravmodak.mdanalysis.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:name="com.souravmodak.mdanalysis.ui.product.NewProductFragment"
+        android:label="@string/menu_new_product"
+        tools:layout="@layout/fragment_gallery" >
+    </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow"
