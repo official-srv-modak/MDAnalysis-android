@@ -66,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         fetchMenuTitle();
-
-        //fetchProducts();
+        // cards are loaded in the fragment HomeFragment
     }
 
     @Override

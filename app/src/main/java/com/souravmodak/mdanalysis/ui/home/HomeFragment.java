@@ -2,7 +2,6 @@ package com.souravmodak.mdanalysis.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -16,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.souravmodak.mdanalysis.MainActivity;
 import com.souravmodak.mdanalysis.R;
 import com.souravmodak.mdanalysis.databinding.FragmentHomeBinding;
 import com.souravmodak.mdanalysis.misc.ApiService;
@@ -30,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private View productListCard, productCard;
+    private View productListCard, productCard, profileSummaryCard;
     private LinearLayout productListLinearLayout, homeLinearLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,15 +41,18 @@ public class HomeFragment extends Fragment {
 
         // Access the LinearLayout using binding instead of getView()
         homeLinearLayout = binding.homeLinearLayout;
+        //
+        intialiseProfileSummary();
+        //Fetch the product cards
+        intialiseProductsList();
 
-        // Inflate a product card and add it to the LinearLayout
-        productListCard = LayoutInflater.from(getContext()).inflate(R.layout.product_list_home, homeLinearLayout,  false);
-        productListLinearLayout = productListCard.findViewById(R.id.product_list_linear_layout);
 
-        fetchProducts();
-
-        homeLinearLayout.addView(productListCard);
         return root;
+    }
+
+    private void intialiseProfileSummary() {
+        profileSummaryCard = LayoutInflater.from(getContext()).inflate(R.layout.custom_profile_summary_card, homeLinearLayout,  false);
+        homeLinearLayout.addView(profileSummaryCard);
     }
 
     @Override
@@ -60,13 +61,17 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    private void fetchProducts(){
+    private void intialiseProductsList(){
+
+        // Inflate a product card and add it to the LinearLayout
+        productListCard = LayoutInflater.from(getContext()).inflate(R.layout.custom_product_list_home, homeLinearLayout,  false);
+        productListLinearLayout = productListCard.findViewById(R.id.product_list_linear_layout);
 
         ApiService apiService;
 
         // Set up Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getContext().getString(R.string.url_product)) // replace with your API's base URL
+                .baseUrl(getString(R.string.url_product)) // replace with your API's base URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -97,11 +102,13 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        homeLinearLayout.addView(productListCard);
     }
 
     private void fetchProduct(int id) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getContext().getString(R.string.url_product)) // Replace with your actual base URL
+                .baseUrl(getString(R.string.url_product)) // Replace with your actual base URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -109,7 +116,7 @@ public class HomeFragment extends Fragment {
 
         Call<JsonObject> call = apiService.getProduct(
                 "edbeb8ed-cef9-4a21-b2fb-abe1df24b3e7", // x-request-id
-                "Basic YWRtaW46YWRtaW4=",               // Authorization
+                getString(R.string.auth_token),               // Authorization
                 id                                       // Product ID
         );
 
@@ -122,7 +129,7 @@ public class HomeFragment extends Fragment {
                     JsonObject productRes = response.body();
                     JsonObject product = productRes.getAsJsonObject("product");
 
-                    productCard = LayoutInflater.from(getContext()).inflate(R.layout.product_card, productListLinearLayout,  false);
+                    productCard = LayoutInflater.from(getContext()).inflate(R.layout.custom_product_card, productListLinearLayout,  false);
 
                     TextView productCardTitle = productCard.findViewById(R.id.product_title);
                     TextView productCardAccuracyValue = productCard.findViewById(R.id.product_card_accuracy_value);

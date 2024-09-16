@@ -28,6 +28,15 @@
     <string name="card_test_model_file">Test File</string>
     <string name="card_model_type">Model Type</string>
     <string name="product_list_title">Products List</string>
+    <string name="auth_token">Basic YWRtaW46YWRtaW4=</string>
+    <string name="summary_card_project_title">Project Name</string>
+    <string name="summary_card_number_of_products_title">Number of Models</string>
+    <string name="summary_card_project_des_title">Project Description</string>
+    <string name="summary_card_project_owners_title">Project Owners</string>
+    <string name="summary_card_fake_project_desc">The PredictIQ project focuses on developing a comprehensive machine learning solution for customer segmentation in the retail industry. The goal is to create accurate customer profiles based on purchasing behavior, demographics, and online engagement, enabling targeted marketing strategies and improving customer retention. The project leverages advanced machine learning models to analyze vast datasets, predict customer preferences, and recommend personalized experiences. PredictIQ aims to help retailers optimize their marketing campaigns and increase conversion rates by understanding customers at a deeper level.</string>
+    <string name="summary_card_fake_project_name">PredictIQ: Intelligent Customer Segmentation</string>
+    <string name="summary_card_fake_num_of_models">5</string>
+    <string name="summary_card_fake_names">Jone Doe, Jane Doe</string>
 
 
 </resources>
