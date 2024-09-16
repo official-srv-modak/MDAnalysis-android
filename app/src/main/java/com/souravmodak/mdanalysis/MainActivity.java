@@ -1,7 +1,6 @@
 package com.souravmodak.mdanalysis;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private ApiService apiService;
-    private Menu settingsMenuItemMenu;
+    private Menu settingsMenu;
 
 
 
@@ -66,23 +65,16 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
-
-        // Set up Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.0.47:8081/product-catalog-module/product/") // replace with your API's base URL
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        apiService = retrofit.create(ApiService.class);
         fetchMenuTitle();
+
+        //fetchProducts();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        settingsMenuItemMenu = menu;
+        settingsMenu = menu;
         return true;
     }
 
@@ -94,7 +86,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchMenuTitle() {
-        Call<JsonObject> call = apiService.getDynamicTitle();
+
+        // Set up Retrofit
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getBaseContext().getString(R.string.url_product)) // replace with your API's base URL
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        apiService = retrofit.create(ApiService.class);
+
+        Call<JsonObject> call = apiService.getAllProducts();
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -104,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
                     JsonArray products = responseObject.getAsJsonArray("products");
 
                     // Clear previous menu items if needed
-                    if (settingsMenuItemMenu != null) {
-                        settingsMenuItemMenu.clear(); // Clear existing menu items
+                    if (settingsMenu != null) {
+                        settingsMenu.clear(); // Clear existing menu items
 
                         // Add new menu items based on the JSON data
                         for (int i = 0; i < products.size(); i++) {
@@ -113,11 +114,11 @@ public class MainActivity extends AppCompatActivity {
                             String title = product.get(getBaseContext().getString(R.string.product_card_title)).getAsString(); // Adjust according to your JSON structure
 
                             // Add new menu item
-                            settingsMenuItemMenu.add(Menu.NONE, i, Menu.NONE, title);
+                            settingsMenu.add(Menu.NONE, i, Menu.NONE, title);
                         }
                     }
                 } else {
-                    Toast.makeText(MainActivity.this, "Failed to get dynamic title", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Failed to get response", Toast.LENGTH_SHORT).show();
                 }
             }
 
