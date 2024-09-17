@@ -31,12 +31,12 @@
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/product_card_accuracy_value"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                android:text="@string/sample_value"
+                android:hint="@string/sample_value"
                 android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textSize="12sp"/>

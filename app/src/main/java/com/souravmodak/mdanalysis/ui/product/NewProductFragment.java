@@ -27,7 +27,7 @@ public class NewProductFragment extends Fragment {
         View root = binding.getRoot();
 
         final ConstraintLayout constraintLayout = binding.fragmentNewProductRoot;
-        constraintLayout.addView(LibraryFuctions.createMultipleTextView(getContext() , "Name", "Train File", "Test File", "Decision Column", "Columns"));
+        constraintLayout.addView(LibraryFuctions.createMultipleTextView(getContext() , "Name", "Train File", "Test File", "Split", "Decision Column", "Columns"));
         return root;
     }
 
