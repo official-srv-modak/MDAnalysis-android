@@ -28,6 +28,9 @@
     <string name="card_test_model_file">Test File</string>
     <string name="card_model_type">Model Type</string>
     <string name="product_list_title">Products List</string>
+    <string name="sample_title">Title</string>
+    <string name="refresh_page">Refresh</string>
+    <string name="menu_new_product">New Product</string>
 
 
 </resources>

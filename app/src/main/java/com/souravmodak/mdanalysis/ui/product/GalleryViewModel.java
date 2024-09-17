@@ -1,4 +1,4 @@
-package com.souravmodak.mdanalysis.ui.gallery;
+package com.souravmodak.mdanalysis.ui.product;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
