@@ -37,6 +37,9 @@
     <string name="summary_card_fake_project_name">PredictIQ: Intelligent Customer Segmentation</string>
     <string name="summary_card_fake_num_of_models">5</string>
     <string name="summary_card_fake_names">Jone Doe, Jane Doe</string>
+    <string name="sample_title">Title</string>
+    <string name="refresh_page">Refresh</string>
+    <string name="sample_value">Value</string>
 
 
 </resources>

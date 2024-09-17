@@ -19,7 +19,7 @@
         android:id="@+id/nav_gallery"
         android:name="com.souravmodak.mdanalysis.ui.product.NewProductFragment"
         android:label="@string/menu_new_product"
-        tools:layout="@layout/fragment_gallery" >
+        tools:layout="@layout/fragment_new_product" >
     </fragment>
 
     <fragment
