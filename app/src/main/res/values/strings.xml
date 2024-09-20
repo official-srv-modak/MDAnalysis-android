@@ -15,7 +15,8 @@
     <string name="domain_name">product-catalog-module</string>
     <string name="catalog_name">product</string>
     <string name="get_all_products">get-all-products</string>
-    <string name="url_product">http://192.168.125.51:8765/product-catalog-module/product/</string>
+    <string name="url_product">http://192.168.125.189:8765/product-catalog-module/product/</string>
+    <string name="url_corr_mat">http://localhost:7654/api/get-correlation-matrix-info/</string>
     <string name="product_card_title">description</string>
     <string name="tab_text_1">Analysis</string>
     <string name="tab_text_2">code</string>

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.souravmodak.mdanalysis.databinding.FragmentNewProductBinding;
 import com.souravmodak.mdanalysis.misc.LibraryFuctions;
+import com.souravmodak.mdanalysis.ui.polar_page_models.NewProductPageModel;
 
 public class NewProductFragment extends Fragment {
 
@@ -27,7 +28,7 @@ public class NewProductFragment extends Fragment {
         View root = binding.getRoot();
 
         final ConstraintLayout constraintLayout = binding.fragmentNewProductRoot;
-        constraintLayout.addView(LibraryFuctions.createMultipleTextView(getContext() , "Name", "Train File", "Test File", "Split", "Decision Column", "Columns"));
+        NewProductPageModel.renderUI(constraintLayout, getContext());
         return root;
     }
 
