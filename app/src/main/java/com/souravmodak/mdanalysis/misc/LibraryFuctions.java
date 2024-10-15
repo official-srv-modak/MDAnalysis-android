@@ -8,27 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
+import com.bumptech.glide.Glide;
 import com.google.gson.JsonObject;
 import com.souravmodak.mdanalysis.R;
-
-import org.json.JSONObject;
-
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import com.souravmodak.mdanalysis.misc.ApiService;
 
 import java.io.IOException;
 
@@ -73,12 +67,28 @@ public class LibraryFuctions {
     }
 
 
-    private static @NonNull View createSingularInformationCard(Context context, String value, LinearLayout linearLayout) {
+    public static @NonNull View createSingularInformationCard(Context context, String value, LinearLayout linearLayout) {
         View tv = LayoutInflater.from(context).inflate(R.layout.custom_information_md_ai_card, linearLayout,  false);
 
         // Set value
         TextView txtView = tv.findViewById(R.id.information_card_tv);
         txtView.setText(value);
+
+        return tv;
+    }
+
+    public static @NonNull View createSingularImageCard(Context context, String url, LinearLayout linearLayout) {
+        View tv = LayoutInflater.from(context).inflate(R.layout.custom_md_image_ai_card, linearLayout,  false);
+
+        // Set value
+        ImageView imageView = tv.findViewById(R.id.custom_md_image_iv);
+
+        // Use Glide to load the image from the URL into the ImageView
+        Glide.with(context)
+                .load(url)                // URL of the image
+                .placeholder(R.drawable.ic_menu_gallery)  // Placeholder image while loading
+                .timeout(100000)
+                .into(imageView);         // Target ImageView
 
         return tv;
     }

@@ -11,12 +11,12 @@
     <string name="menu_new_product">New Product</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="ip">10.0.0.47</string>
-    <string name="port">8081</string>
+    <string name="port">8765</string>
     <string name="domain_name">product-catalog-module</string>
     <string name="catalog_name">product</string>
     <string name="get_all_products">get-all-products</string>
-    <string name="url_product">http://192.168.125.189:8765/product-catalog-module/product/</string>
-    <string name="url_corr_mat">http://192.168.127.189:7654/api/</string>
+    <string name="url_product">http://10.0.0.47:8765/product-catalog-module/product/</string>
+    <string name="url_corr_mat">http://10.0.0.47:7654/api/</string>
     <string name="product_card_title">description</string>
     <string name="tab_text_1">Analysis</string>
     <string name="tab_text_2">code</string>

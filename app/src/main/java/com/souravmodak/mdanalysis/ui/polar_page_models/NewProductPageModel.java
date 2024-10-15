@@ -29,8 +29,11 @@ public abstract class NewProductPageModel {
         linearLayout.addView(createSingularFileChooser(context, "Test File", linearLayout));
         linearLayout.addView(LibraryFuctions.createMultipleTextView(context, "Split", "Decision Column"));
         // Now retrieve the "corr_mat" field as a string
+        linearLayout.addView(LibraryFuctions.createSingularInformationCard(context, context.getString(R.string.summary_card_fake_project_desc), linearLayout));
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("corr_mat", context.getString(R.string.sample_text));
+        linearLayout.addView(LibraryFuctions.createSingularImageCard(context, "http://10.0.0.47:7654/api/get-correlation-matrix-image?id=1", linearLayout));
+
+//        jsonObject.addProperty("corr_mat", context.getString(R.string.sample_text));
         HorizontalScrollView tableLayout = LibraryFuctions.generateTabularInfo(jsonObject, "corr_mat", context);
         linearLayout.addView(tableLayout);
 

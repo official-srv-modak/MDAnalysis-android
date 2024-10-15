@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="10dp"
+        android:elevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,27 +21,27 @@
 
             <TextView
                 android:id="@+id/product_card_accuracy_title"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.5"
+                android:gravity="end"
                 android:text="@string/sample_title"
-                android:textColor="@color/white"
-                android:background="@color/black"
+                android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/product_card_accuracy_value"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:hint="@string/sample_value"
-                android:padding="10dp"
-                android:paddingHorizontal="10dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.5"
+                android:gravity="start"
+                android:text="@string/sample_value"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
-
+                android:textSize="12sp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
