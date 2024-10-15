@@ -7,9 +7,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class LibraryFuctions {
@@ -62,6 +65,25 @@ public class LibraryFuctions {
         // Set value
         TextView txtView = tv.findViewById(R.id.product_card_accuracy_title);
         txtView.setText(value);
+
+        return tv;
+    }
+
+    public static @NonNull View createSingularCustomSpinner(Context context, String titleValue, List<String> spinnerItems, LinearLayout linearLayout) {
+        View tv = LayoutInflater.from(context).inflate(R.layout.custom_spinner_with_text_view, linearLayout,  false);
+
+        // Set value
+        TextView txtView = tv.findViewById(R.id.spinner_card_title);
+        txtView.setText(titleValue);
+
+        Spinner spinner = tv.findViewById(R.id.spinner_card_spinner);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.custom_spinner_item, spinnerItems);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+// Set the adapter to the Spinner
+        spinner.setAdapter(adapter);
+
 
         return tv;
     }

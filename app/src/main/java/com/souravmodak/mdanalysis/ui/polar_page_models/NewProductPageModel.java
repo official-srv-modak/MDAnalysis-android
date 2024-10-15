@@ -18,6 +18,7 @@ import com.souravmodak.mdanalysis.R;
 import com.souravmodak.mdanalysis.misc.LibraryFuctions;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public abstract class NewProductPageModel {
 
@@ -27,7 +28,8 @@ public abstract class NewProductPageModel {
         constraintLayout.addView(linearLayout);
         linearLayout.addView(createSingularFileChooser(context, "Train File", linearLayout));
         linearLayout.addView(createSingularFileChooser(context, "Test File", linearLayout));
-        linearLayout.addView(LibraryFuctions.createMultipleTextView(context, "Split", "Decision Column"));
+        linearLayout.addView(LibraryFuctions.createMultipleTextView(context, "Split"));
+        linearLayout.addView((LibraryFuctions.createSingularCustomSpinner(context, "Decision Column", Arrays.asList("Option 1", "Option 2", "Option 3"), linearLayout)));
         // Now retrieve the "corr_mat" field as a string
         linearLayout.addView(LibraryFuctions.createSingularInformationCard(context, context.getString(R.string.summary_card_fake_project_desc), linearLayout));
         JsonObject jsonObject = new JsonObject();
@@ -37,6 +39,6 @@ public abstract class NewProductPageModel {
         HorizontalScrollView tableLayout = LibraryFuctions.generateTabularInfo(jsonObject, "corr_mat", context);
         linearLayout.addView(tableLayout);
 
-        linearLayout.addView(LibraryFuctions.createMultipleTextView(context, "Columns"));
+        linearLayout.addView((LibraryFuctions.createSingularCustomSpinner(context, "Columns", Arrays.asList("Option 1", "Option 2", "Option 3"), linearLayout)));
     }
 }
