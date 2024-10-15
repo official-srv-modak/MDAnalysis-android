@@ -1,6 +1,10 @@
 package com.souravmodak.mdanalysis.misc;
 
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.Gravity;
@@ -32,6 +36,7 @@ import java.util.List;
 
 public class LibraryFuctions {
 
+    public static final int REQUEST_CODE_FILE_PICKER = 1;
     public static LinearLayout createMultipleTextView(Context context, String... titleValues)
     {
         LinearLayout linearLayout = new LinearLayout(context);
@@ -59,11 +64,49 @@ public class LibraryFuctions {
         return linearLayout;
     }
 
-    private static @NonNull View createSingularCustomTextView(Context context, String value, LinearLayout linearLayout) {
+    public static @NonNull View createSingularCustomTextView(Context context, String value, LinearLayout linearLayout) {
         View tv = LayoutInflater.from(context).inflate(R.layout.custom_text_field_with_title, linearLayout,  false);
 
         // Set value
         TextView txtView = tv.findViewById(R.id.product_card_accuracy_title);
+        txtView.setText(value);
+
+        return tv;
+    }
+
+    public static LinearLayout createMultipleEditText(Context context, String... titleValues)
+    {
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+
+        linearLayout.setLayoutParams(layoutParams);
+
+        int number = titleValues.length;
+
+        for(int i =0; i<number; i++)
+        {
+            String value = context.getString(R.string.sample_title);
+            if(i < titleValues.length)
+            {
+                value = titleValues[i];
+                View tv = createSingularCustomEditText(context, value, linearLayout);
+                linearLayout.addView(tv);
+            }
+        }
+        return linearLayout;
+    }
+
+
+    public static @NonNull View createSingularCustomEditText(Context context, String value, LinearLayout linearLayout) {
+        View tv = LayoutInflater.from(context).inflate(R.layout.custom_edit_text_with_title, linearLayout,  false);
+
+        // Set value
+        TextView txtView = tv.findViewById(R.id.edit_text_title);
         txtView.setText(value);
 
         return tv;
@@ -115,13 +158,13 @@ public class LibraryFuctions {
         return tv;
     }
 
-    public static @NonNull View createSingularFileChooser(Context context, String value, LinearLayout linearLayout) {
+    public static @NonNull View createSingularFileChooser(Context context, Activity activity, String value, LinearLayout linearLayout) {
         View fileChooserView = LayoutInflater.from(context).inflate(R.layout.custom_file_chooser_with_text_view, linearLayout,  false);
 
         // Create layout parameters for setting margins
         LinearLayout.LayoutParams tvParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.MATCH_PARENT
         );
 
         // Set the margins (left, top, right, bottom) in pixels
@@ -132,10 +175,26 @@ public class LibraryFuctions {
 
         // Set value
         TextView txtView = fileChooserView.findViewById(R.id.file_chooser_title);
+        ImageView fileButton = fileChooserView.findViewById(R.id.file_chooser_button);
+        fileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickFileChooser(activity);
+            }
+        });
+
         txtView.setText(value);
 
         return fileChooserView;
     }
+
+    public static void onClickFileChooser(Activity activity) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*"); // Choose any file type; you can specify specific types like "image/*" if needed
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        activity.startActivityForResult(Intent.createChooser(intent, "Select a file"), REQUEST_CODE_FILE_PICKER);
+    }
+
 
     public static HorizontalScrollView generateTabularInfo(JsonObject jsonObject, String key, Context context) {
         // Initialize TableLayout inside HorizontalScrollView

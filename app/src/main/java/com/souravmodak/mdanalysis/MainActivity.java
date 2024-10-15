@@ -1,13 +1,20 @@
 package com.souravmodak.mdanalysis;
 
+import static com.souravmodak.mdanalysis.misc.LibraryFuctions.REQUEST_CODE_FILE_PICKER;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
@@ -28,7 +35,12 @@ public class MainActivity extends AppCompatActivity {
     private ApiService apiService;
     private Menu settingsMenu;
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Restore the FloatingActionButton visibility when the activity resumes
+        binding.appBarMain.addProduct.setVisibility(View.VISIBLE);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up toolbar
         setSupportActionBar(binding.appBarMain.toolbar);
+
+        // Initially show the FloatingActionButton
+        binding.appBarMain.addProduct.setVisibility(View.VISIBLE);
 
         // Set up FloatingActionButton click listener to navigate to GalleryFragment
         binding.appBarMain.addProduct.setOnClickListener(view -> openGalleryFragment());
@@ -63,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_gallery) {
+                // Navigate to GalleryFragment and hide FloatingActionButton
+                binding.appBarMain.addProduct.setVisibility(View.GONE);
                 openGalleryFragment();
             } else if (id == R.id.nav_home) {
                 // Navigate to Home Fragment
@@ -117,5 +134,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == REQUEST_CODE_FILE_PICKER && resultCode == RESULT_OK) {
+            // Get the selected file URI
+            Uri selectedFileUri = data.getData();
+            if (selectedFileUri != null) {
+                Toast.makeText(this, selectedFileUri.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

@@ -32,7 +32,7 @@ public class NewProductFragment extends Fragment {
         View root = binding.getRoot();
 
         final ScrollView constraintLayout = binding.fragmentNewProductRoot;
-        NewProductPageModel.renderUI(constraintLayout, getContext());
+        NewProductPageModel.renderUI(constraintLayout, getContext(), getActivity());
         FloatingActionButton button = getActivity().findViewById(R.id.addProduct);
         button.setVisibility(View.INVISIBLE);
         return root;
